@@ -1,8 +1,48 @@
 Entro en Regla 39: F-> INTEGER
 Entro en Regla 38: T -> F
+Entro en Regla 41: F-> FLOAT
+Entro en Regla 35: T -> T * F
 Entro en Regla 34: E -> T
 Entro en Regla 31: SA -> ID := E
 Entro en Regla 05: S -> SA
 Entro en Regla 04: LS -> S ;
+Entro en Regla 40: F-> ID
+Entro en Regla 38: T -> F
+Entro en Regla 34: E -> T
+Entro en Regla 23: ACI -> E
+Entro en Regla 25-30: OP_L -> NE | LT | LTE | GT | GTE | EQUAL
+Entro en Regla 39: F-> INTEGER
+Entro en Regla 38: T -> F
+Entro en Regla 34: E -> T
+Entro en Regla 24: ACD -> E
+Entro en Regla 22: C -> ACI OP_L ACD
+Entro en Regla 21: LC -> (C)
+Entro en Regla 20: LC -> C
+Entro en Regla 39: F-> INTEGER
+Entro en Regla 38: T -> F
+Entro en Regla 34: E -> T
+Entro en Regla 39: F-> INTEGER
+Entro en Regla 38: T -> F
+Entro en Regla 39: F-> INTEGER
+Entro en Regla 35: T -> T * F
+Entro en Regla 32: E -> E + T
+Entro en Regla 31: SA -> ID := E
+Entro en Regla 05: S -> SA
+Entro en Regla 04: LS -> S ;
+Entro en Regla 39: F-> INTEGER
+Entro en Regla 38: T -> F
+Entro en Regla 34: E -> T
+Entro en Regla 31: SA -> ID := E
+Entro en Regla 05: S -> SA
+Entro en Regla 04: LS -> S ;
+Entro en Regla 16: SC -> IF LC { LS }  ELSE { LS }
+Entro en Regla 06: S -> SC
+Entro en Regla 03: LS -> LS S ;
+Entro en Regla 40: F-> ID
+Entro en Regla 38: T -> F
+Entro en Regla 34: E -> T
+Entro en Regla 31: SA -> ID := E
+Entro en Regla 05: S -> SA
+Entro en Regla 03: LS -> LS S ;
 Entro en Regla 02: B-> LS
 Entro en Regla 01: P->B

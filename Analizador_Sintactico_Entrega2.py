@@ -214,7 +214,7 @@ def p_fin_cond(p):
 
 def p_fin_bloque_verd(p):
                             "fin_bloque_verd :"
-                            tercetoActual = (crearTerceto('ELSE','BI','_'))
+                            tercetoActual = (crearTerceto('CMP','BI','_'))
                             modificarTerceto(pilaTercetos.desapilar(),tercetoActual+1)
                             pilaTercetos.apilar(tercetoActual)
     
@@ -285,7 +285,7 @@ def p_setencia_asig(p):
                         ''' sentencia_asig : ID ASSIGN expresion'''
                         reglas_aplicadas.append("Entro en Regla 31: SA -> ID := E")
                         global pt_sentencia_asig
-                        crearTerceto(p[2],p[1],pt_expresion)
+                        crearTerceto(p[2],p[1],punteroNombre(pt_expresion))
                         pt_sentencia_asig = numeroTercetos
                         #pt_tabla_simbolos = get_element_from_tabla_simbolos(p[1])
                         #tablaDeSimbolos[pt_tabla_simbolos].set_valor = p[3]

@@ -1,3 +1,12 @@
 Nombre    |Tipo   |Valor          |Alias          |Limite    |Longitud  
-c         |       |               |               |          |          
+varFloat1 |       |               |               |          |          
+          |INT    |2              |               |          |          
+          |FLOAT  |1.5            |               |          |          
+          |INT    |2              |               |          |          
+a         |       |               |               |          |          
+          |INT    |5              |               |          |          
           |INT    |3              |               |          |          
+          |INT    |2              |               |          |          
+b         |       |               |               |          |          
+          |INT    |5              |               |          |          
+c         |       |               |               |          |          
