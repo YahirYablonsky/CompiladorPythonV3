@@ -1,0 +1,2108 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> bloque
+Rule 2     bloque -> lista_sentencias
+Rule 3     lista_sentencias -> lista_sentencias sentencia ENDL
+Rule 4     lista_sentencias -> sentencia ENDL
+Rule 5     sentencia -> sentencia_asig
+Rule 6     sentencia -> sentencia_cond
+Rule 7     sentencia -> sentencia_while
+Rule 8     sentencia -> sentencia_decl
+Rule 9     sentencia -> sentencia_write
+Rule 10    sentencia -> sentencia_read
+Rule 11    sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+Rule 12    fin_cond_wh -> <empty>
+Rule 13    pre_cond_wh -> <empty>
+Rule 14    sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+Rule 15    fin_cond -> <empty>
+Rule 16    fin_bloque_verd -> <empty>
+Rule 17    sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+Rule 18    lista_condiciones -> LBRA lista_condiciones AND condicion RBRA
+Rule 19    lista_condiciones -> lista_condiciones OR condicion
+Rule 20    lista_condiciones -> condicion
+Rule 21    condicion -> LBRA condicion RBRA
+Rule 22    condicion -> arg_condicional_izq op_logico arg_condicional_der
+Rule 23    arg_condicional_izq -> expresion
+Rule 24    arg_condicional_der -> expresion
+Rule 25    op_logico -> NE
+Rule 26    op_logico -> LT
+Rule 27    op_logico -> LTE
+Rule 28    op_logico -> GT
+Rule 29    op_logico -> GTE
+Rule 30    op_logico -> EQUAL
+Rule 31    sentencia_asig -> ID ASSIGN expresion
+Rule 32    expresion -> expresion PLUS termino
+Rule 33    expresion -> expresion MINUS termino
+Rule 34    expresion -> termino
+Rule 35    termino -> termino MULT factor
+Rule 36    termino -> termino DIVIDE factor
+Rule 37    termino -> termino REST factor
+Rule 38    termino -> factor
+Rule 39    factor -> INTEGER
+Rule 40    factor -> ID
+Rule 41    factor -> FLOATD
+Rule 42    factor -> LBRA expresion RBRA
+Rule 43    sentencia_write -> WRITE cte
+Rule 44    sentencia_write -> WRITE ID
+Rule 45    sentencia_read -> READ ID
+Rule 46    cte -> FLOATD
+Rule 47    cte -> INTEGER
+Rule 48    cte -> STRINGD
+Rule 49    sentencia_decl -> DECVAR lista_declaraciones ENDDEC
+Rule 50    lista_declaraciones -> lista_declaraciones declaracion
+Rule 51    lista_declaraciones -> declaracion
+Rule 52    declaracion -> lista_id COLON tipo_dato ENDL
+Rule 53    lista_id -> lista_id COMMA ID
+Rule 54    lista_id -> ID
+Rule 55    tipo_dato -> FLOAT
+Rule 56    tipo_dato -> STRING
+Rule 57    tipo_dato -> INT
+Rule 58    condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA
+Rule 59    tupla -> OP_BRC tupla_izq ENDL tupla_der CL_BRC
+Rule 60    tupla_izq -> expresion
+Rule 61    tupla_der -> expresion
+Rule 62    condicion -> condicion_between
+Rule 63    expresion -> expresion_take
+Rule 64    expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+Rule 65    op_arit -> PLUS
+Rule 66    op_arit -> MINUS
+Rule 67    op_arit -> DIVIDE
+Rule 68    op_arit -> MULT
+Rule 69    op_arit -> REST
+Rule 70    lista_take -> lista_take ENDL cte_take
+Rule 71    lista_take -> cte_take
+Rule 72    cte_take -> INTEGER
+Rule 73    cte_take -> FLOATD
+
+Terminals, with rules where they appear
+
+AND                  : 18
+ASSIGN               : 31
+BETWEEN              : 58
+CL_BRA               : 11 14 17 17
+CL_BRC               : 59 64
+COLON                : 52
+COMMA                : 53 58
+DECVAR               : 49
+DIVIDE               : 36 67
+ELSE                 : 17
+ENDDEC               : 49
+ENDL                 : 3 4 52 59 64 64 70
+EQUAL                : 30
+FLOAT                : 55
+FLOATD               : 41 46 73
+GT                   : 28
+GTE                  : 29
+ID                   : 31 40 44 45 53 54 58
+IF                   : 14 17
+INT                  : 57
+INTEGER              : 39 47 64 72
+LBRA                 : 18 21 42 58 64
+LT                   : 26
+LTE                  : 27
+MINUS                : 33 66
+MULT                 : 35 68
+NE                   : 25
+OP_BRA               : 11 14 17 17
+OP_BRC               : 59 64
+OR                   : 19
+PLUS                 : 32 65
+RBRA                 : 18 21 42 58 64
+READ                 : 45
+REST                 : 37 69
+STRING               : 56
+STRINGD              : 48
+TAKE                 : 64
+WHILE                : 11
+WRITE                : 43 44
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_condicional_der  : 22
+arg_condicional_izq  : 22
+bloque               : 1
+condicion            : 18 19 20 21
+condicion_between    : 62
+cte                  : 43
+cte_take             : 70 71
+declaracion          : 50 51
+expresion            : 23 24 31 32 33 42 60 61
+expresion_take       : 63
+factor               : 35 36 37 38
+fin_bloque_verd      : 17
+fin_cond             : 14 17
+fin_cond_wh          : 11
+lista_condiciones    : 11 14 17 18 19
+lista_declaraciones  : 49 50
+lista_id             : 52 53
+lista_sentencias     : 2 3 11 14 17 17
+lista_take           : 64 70
+op_arit              : 64
+op_logico            : 22
+pre_cond_wh          : 11
+program              : 0
+sentencia            : 3 4
+sentencia_asig       : 5
+sentencia_cond       : 6
+sentencia_decl       : 8
+sentencia_read       : 10
+sentencia_while      : 7
+sentencia_write      : 9
+termino              : 32 33 34 35 36 37
+tipo_dato            : 52
+tupla                : 58
+tupla_der            : 59
+tupla_izq            : 59
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . bloque
+    (2) bloque -> . lista_sentencias
+    (3) lista_sentencias -> . lista_sentencias sentencia ENDL
+    (4) lista_sentencias -> . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    program                        shift and go to state 1
+    bloque                         shift and go to state 2
+    lista_sentencias               shift and go to state 3
+    sentencia                      shift and go to state 4
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> bloque .
+
+    $end            reduce using rule 1 (program -> bloque .)
+
+
+state 3
+
+    (2) bloque -> lista_sentencias .
+    (3) lista_sentencias -> lista_sentencias . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    $end            reduce using rule 2 (bloque -> lista_sentencias .)
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    sentencia                      shift and go to state 17
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 4
+
+    (4) lista_sentencias -> sentencia . ENDL
+
+    ENDL            shift and go to state 18
+
+
+state 5
+
+    (5) sentencia -> sentencia_asig .
+
+    ENDL            reduce using rule 5 (sentencia -> sentencia_asig .)
+
+
+state 6
+
+    (6) sentencia -> sentencia_cond .
+
+    ENDL            reduce using rule 6 (sentencia -> sentencia_cond .)
+
+
+state 7
+
+    (7) sentencia -> sentencia_while .
+
+    ENDL            reduce using rule 7 (sentencia -> sentencia_while .)
+
+
+state 8
+
+    (8) sentencia -> sentencia_decl .
+
+    ENDL            reduce using rule 8 (sentencia -> sentencia_decl .)
+
+
+state 9
+
+    (9) sentencia -> sentencia_write .
+
+    ENDL            reduce using rule 9 (sentencia -> sentencia_write .)
+
+
+state 10
+
+    (10) sentencia -> sentencia_read .
+
+    ENDL            reduce using rule 10 (sentencia -> sentencia_read .)
+
+
+state 11
+
+    (31) sentencia_asig -> ID . ASSIGN expresion
+
+    ASSIGN          shift and go to state 19
+
+
+state 12
+
+    (14) sentencia_cond -> IF . lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> IF . lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (18) lista_condiciones -> . LBRA lista_condiciones AND condicion RBRA
+    (19) lista_condiciones -> . lista_condiciones OR condicion
+    (20) lista_condiciones -> . condicion
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 21
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    lista_condiciones              shift and go to state 20
+    condicion                      shift and go to state 22
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    expresion                      shift and go to state 25
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 13
+
+    (11) sentencia_while -> WHILE . pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (13) pre_cond_wh -> .
+
+    LBRA            reduce using rule 13 (pre_cond_wh -> .)
+    BETWEEN         reduce using rule 13 (pre_cond_wh -> .)
+    TAKE            reduce using rule 13 (pre_cond_wh -> .)
+    INTEGER         reduce using rule 13 (pre_cond_wh -> .)
+    ID              reduce using rule 13 (pre_cond_wh -> .)
+    FLOATD          reduce using rule 13 (pre_cond_wh -> .)
+
+    pre_cond_wh                    shift and go to state 34
+
+state 14
+
+    (49) sentencia_decl -> DECVAR . lista_declaraciones ENDDEC
+    (50) lista_declaraciones -> . lista_declaraciones declaracion
+    (51) lista_declaraciones -> . declaracion
+    (52) declaracion -> . lista_id COLON tipo_dato ENDL
+    (53) lista_id -> . lista_id COMMA ID
+    (54) lista_id -> . ID
+
+    ID              shift and go to state 38
+
+    lista_declaraciones            shift and go to state 35
+    declaracion                    shift and go to state 36
+    lista_id                       shift and go to state 37
+
+state 15
+
+    (43) sentencia_write -> WRITE . cte
+    (44) sentencia_write -> WRITE . ID
+    (46) cte -> . FLOATD
+    (47) cte -> . INTEGER
+    (48) cte -> . STRINGD
+
+    ID              shift and go to state 40
+    FLOATD          shift and go to state 41
+    INTEGER         shift and go to state 42
+    STRINGD         shift and go to state 43
+
+    cte                            shift and go to state 39
+
+state 16
+
+    (45) sentencia_read -> READ . ID
+
+    ID              shift and go to state 44
+
+
+state 17
+
+    (3) lista_sentencias -> lista_sentencias sentencia . ENDL
+
+    ENDL            shift and go to state 45
+
+
+state 18
+
+    (4) lista_sentencias -> sentencia ENDL .
+
+    ID              reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    IF              reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    WHILE           reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    DECVAR          reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    WRITE           reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    READ            reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    $end            reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+    CL_BRA          reduce using rule 4 (lista_sentencias -> sentencia ENDL .)
+
+
+state 19
+
+    (31) sentencia_asig -> ID ASSIGN . expresion
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    expresion                      shift and go to state 46
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 20
+
+    (14) sentencia_cond -> IF lista_condiciones . fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> IF lista_condiciones . fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (19) lista_condiciones -> lista_condiciones . OR condicion
+    (15) fin_cond -> .
+
+    OR              shift and go to state 49
+    OP_BRA          reduce using rule 15 (fin_cond -> .)
+
+    fin_cond                       shift and go to state 48
+
+state 21
+
+    (18) lista_condiciones -> LBRA . lista_condiciones AND condicion RBRA
+    (21) condicion -> LBRA . condicion RBRA
+    (42) factor -> LBRA . expresion RBRA
+    (18) lista_condiciones -> . LBRA lista_condiciones AND condicion RBRA
+    (19) lista_condiciones -> . lista_condiciones OR condicion
+    (20) lista_condiciones -> . condicion
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 21
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    lista_condiciones              shift and go to state 50
+    condicion                      shift and go to state 51
+    expresion                      shift and go to state 52
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 22
+
+    (20) lista_condiciones -> condicion .
+
+    OR              reduce using rule 20 (lista_condiciones -> condicion .)
+    OP_BRA          reduce using rule 20 (lista_condiciones -> condicion .)
+
+
+state 23
+
+    (22) condicion -> arg_condicional_izq . op_logico arg_condicional_der
+    (25) op_logico -> . NE
+    (26) op_logico -> . LT
+    (27) op_logico -> . LTE
+    (28) op_logico -> . GT
+    (29) op_logico -> . GTE
+    (30) op_logico -> . EQUAL
+
+    NE              shift and go to state 54
+    LT              shift and go to state 55
+    LTE             shift and go to state 56
+    GT              shift and go to state 57
+    GTE             shift and go to state 58
+    EQUAL           shift and go to state 59
+
+    op_logico                      shift and go to state 53
+
+state 24
+
+    (62) condicion -> condicion_between .
+
+    OR              reduce using rule 62 (condicion -> condicion_between .)
+    OP_BRA          reduce using rule 62 (condicion -> condicion_between .)
+    RBRA            reduce using rule 62 (condicion -> condicion_between .)
+    AND             reduce using rule 62 (condicion -> condicion_between .)
+
+
+state 25
+
+    (23) arg_condicional_izq -> expresion .
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    NE              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    LT              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    LTE             reduce using rule 23 (arg_condicional_izq -> expresion .)
+    GT              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    GTE             reduce using rule 23 (arg_condicional_izq -> expresion .)
+    EQUAL           reduce using rule 23 (arg_condicional_izq -> expresion .)
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 26
+
+    (58) condicion_between -> BETWEEN . LBRA ID COMMA tupla RBRA
+
+    LBRA            shift and go to state 62
+
+
+state 27
+
+    (40) factor -> ID .
+
+    MULT            reduce using rule 40 (factor -> ID .)
+    DIVIDE          reduce using rule 40 (factor -> ID .)
+    REST            reduce using rule 40 (factor -> ID .)
+    PLUS            reduce using rule 40 (factor -> ID .)
+    MINUS           reduce using rule 40 (factor -> ID .)
+    NE              reduce using rule 40 (factor -> ID .)
+    LT              reduce using rule 40 (factor -> ID .)
+    LTE             reduce using rule 40 (factor -> ID .)
+    GT              reduce using rule 40 (factor -> ID .)
+    GTE             reduce using rule 40 (factor -> ID .)
+    EQUAL           reduce using rule 40 (factor -> ID .)
+    ENDL            reduce using rule 40 (factor -> ID .)
+    RBRA            reduce using rule 40 (factor -> ID .)
+    OR              reduce using rule 40 (factor -> ID .)
+    OP_BRA          reduce using rule 40 (factor -> ID .)
+    AND             reduce using rule 40 (factor -> ID .)
+    CL_BRC          reduce using rule 40 (factor -> ID .)
+
+
+state 28
+
+    (34) expresion -> termino .
+    (35) termino -> termino . MULT factor
+    (36) termino -> termino . DIVIDE factor
+    (37) termino -> termino . REST factor
+
+    PLUS            reduce using rule 34 (expresion -> termino .)
+    MINUS           reduce using rule 34 (expresion -> termino .)
+    NE              reduce using rule 34 (expresion -> termino .)
+    LT              reduce using rule 34 (expresion -> termino .)
+    LTE             reduce using rule 34 (expresion -> termino .)
+    GT              reduce using rule 34 (expresion -> termino .)
+    GTE             reduce using rule 34 (expresion -> termino .)
+    EQUAL           reduce using rule 34 (expresion -> termino .)
+    ENDL            reduce using rule 34 (expresion -> termino .)
+    RBRA            reduce using rule 34 (expresion -> termino .)
+    OR              reduce using rule 34 (expresion -> termino .)
+    OP_BRA          reduce using rule 34 (expresion -> termino .)
+    AND             reduce using rule 34 (expresion -> termino .)
+    CL_BRC          reduce using rule 34 (expresion -> termino .)
+    MULT            shift and go to state 63
+    DIVIDE          shift and go to state 64
+    REST            shift and go to state 65
+
+
+state 29
+
+    (63) expresion -> expresion_take .
+
+    PLUS            reduce using rule 63 (expresion -> expresion_take .)
+    MINUS           reduce using rule 63 (expresion -> expresion_take .)
+    NE              reduce using rule 63 (expresion -> expresion_take .)
+    LT              reduce using rule 63 (expresion -> expresion_take .)
+    LTE             reduce using rule 63 (expresion -> expresion_take .)
+    GT              reduce using rule 63 (expresion -> expresion_take .)
+    GTE             reduce using rule 63 (expresion -> expresion_take .)
+    EQUAL           reduce using rule 63 (expresion -> expresion_take .)
+    ENDL            reduce using rule 63 (expresion -> expresion_take .)
+    RBRA            reduce using rule 63 (expresion -> expresion_take .)
+    OR              reduce using rule 63 (expresion -> expresion_take .)
+    OP_BRA          reduce using rule 63 (expresion -> expresion_take .)
+    AND             reduce using rule 63 (expresion -> expresion_take .)
+    CL_BRC          reduce using rule 63 (expresion -> expresion_take .)
+
+
+state 30
+
+    (38) termino -> factor .
+
+    MULT            reduce using rule 38 (termino -> factor .)
+    DIVIDE          reduce using rule 38 (termino -> factor .)
+    REST            reduce using rule 38 (termino -> factor .)
+    PLUS            reduce using rule 38 (termino -> factor .)
+    MINUS           reduce using rule 38 (termino -> factor .)
+    NE              reduce using rule 38 (termino -> factor .)
+    LT              reduce using rule 38 (termino -> factor .)
+    LTE             reduce using rule 38 (termino -> factor .)
+    GT              reduce using rule 38 (termino -> factor .)
+    GTE             reduce using rule 38 (termino -> factor .)
+    EQUAL           reduce using rule 38 (termino -> factor .)
+    ENDL            reduce using rule 38 (termino -> factor .)
+    RBRA            reduce using rule 38 (termino -> factor .)
+    OR              reduce using rule 38 (termino -> factor .)
+    OP_BRA          reduce using rule 38 (termino -> factor .)
+    AND             reduce using rule 38 (termino -> factor .)
+    CL_BRC          reduce using rule 38 (termino -> factor .)
+
+
+state 31
+
+    (64) expresion_take -> TAKE . LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+
+    LBRA            shift and go to state 66
+
+
+state 32
+
+    (39) factor -> INTEGER .
+
+    MULT            reduce using rule 39 (factor -> INTEGER .)
+    DIVIDE          reduce using rule 39 (factor -> INTEGER .)
+    REST            reduce using rule 39 (factor -> INTEGER .)
+    PLUS            reduce using rule 39 (factor -> INTEGER .)
+    MINUS           reduce using rule 39 (factor -> INTEGER .)
+    NE              reduce using rule 39 (factor -> INTEGER .)
+    LT              reduce using rule 39 (factor -> INTEGER .)
+    LTE             reduce using rule 39 (factor -> INTEGER .)
+    GT              reduce using rule 39 (factor -> INTEGER .)
+    GTE             reduce using rule 39 (factor -> INTEGER .)
+    EQUAL           reduce using rule 39 (factor -> INTEGER .)
+    ENDL            reduce using rule 39 (factor -> INTEGER .)
+    RBRA            reduce using rule 39 (factor -> INTEGER .)
+    OR              reduce using rule 39 (factor -> INTEGER .)
+    OP_BRA          reduce using rule 39 (factor -> INTEGER .)
+    AND             reduce using rule 39 (factor -> INTEGER .)
+    CL_BRC          reduce using rule 39 (factor -> INTEGER .)
+
+
+state 33
+
+    (41) factor -> FLOATD .
+
+    MULT            reduce using rule 41 (factor -> FLOATD .)
+    DIVIDE          reduce using rule 41 (factor -> FLOATD .)
+    REST            reduce using rule 41 (factor -> FLOATD .)
+    PLUS            reduce using rule 41 (factor -> FLOATD .)
+    MINUS           reduce using rule 41 (factor -> FLOATD .)
+    NE              reduce using rule 41 (factor -> FLOATD .)
+    LT              reduce using rule 41 (factor -> FLOATD .)
+    LTE             reduce using rule 41 (factor -> FLOATD .)
+    GT              reduce using rule 41 (factor -> FLOATD .)
+    GTE             reduce using rule 41 (factor -> FLOATD .)
+    EQUAL           reduce using rule 41 (factor -> FLOATD .)
+    ENDL            reduce using rule 41 (factor -> FLOATD .)
+    RBRA            reduce using rule 41 (factor -> FLOATD .)
+    OR              reduce using rule 41 (factor -> FLOATD .)
+    OP_BRA          reduce using rule 41 (factor -> FLOATD .)
+    AND             reduce using rule 41 (factor -> FLOATD .)
+    CL_BRC          reduce using rule 41 (factor -> FLOATD .)
+
+
+state 34
+
+    (11) sentencia_while -> WHILE pre_cond_wh . lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (18) lista_condiciones -> . LBRA lista_condiciones AND condicion RBRA
+    (19) lista_condiciones -> . lista_condiciones OR condicion
+    (20) lista_condiciones -> . condicion
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 21
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    lista_condiciones              shift and go to state 67
+    condicion                      shift and go to state 22
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    expresion                      shift and go to state 25
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 35
+
+    (49) sentencia_decl -> DECVAR lista_declaraciones . ENDDEC
+    (50) lista_declaraciones -> lista_declaraciones . declaracion
+    (52) declaracion -> . lista_id COLON tipo_dato ENDL
+    (53) lista_id -> . lista_id COMMA ID
+    (54) lista_id -> . ID
+
+    ENDDEC          shift and go to state 68
+    ID              shift and go to state 38
+
+    declaracion                    shift and go to state 69
+    lista_id                       shift and go to state 37
+
+state 36
+
+    (51) lista_declaraciones -> declaracion .
+
+    ENDDEC          reduce using rule 51 (lista_declaraciones -> declaracion .)
+    ID              reduce using rule 51 (lista_declaraciones -> declaracion .)
+
+
+state 37
+
+    (52) declaracion -> lista_id . COLON tipo_dato ENDL
+    (53) lista_id -> lista_id . COMMA ID
+
+    COLON           shift and go to state 70
+    COMMA           shift and go to state 71
+
+
+state 38
+
+    (54) lista_id -> ID .
+
+    COLON           reduce using rule 54 (lista_id -> ID .)
+    COMMA           reduce using rule 54 (lista_id -> ID .)
+
+
+state 39
+
+    (43) sentencia_write -> WRITE cte .
+
+    ENDL            reduce using rule 43 (sentencia_write -> WRITE cte .)
+
+
+state 40
+
+    (44) sentencia_write -> WRITE ID .
+
+    ENDL            reduce using rule 44 (sentencia_write -> WRITE ID .)
+
+
+state 41
+
+    (46) cte -> FLOATD .
+
+    ENDL            reduce using rule 46 (cte -> FLOATD .)
+
+
+state 42
+
+    (47) cte -> INTEGER .
+
+    ENDL            reduce using rule 47 (cte -> INTEGER .)
+
+
+state 43
+
+    (48) cte -> STRINGD .
+
+    ENDL            reduce using rule 48 (cte -> STRINGD .)
+
+
+state 44
+
+    (45) sentencia_read -> READ ID .
+
+    ENDL            reduce using rule 45 (sentencia_read -> READ ID .)
+
+
+state 45
+
+    (3) lista_sentencias -> lista_sentencias sentencia ENDL .
+
+    ID              reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    IF              reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    WHILE           reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    DECVAR          reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    WRITE           reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    READ            reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    $end            reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+    CL_BRA          reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia ENDL .)
+
+
+state 46
+
+    (31) sentencia_asig -> ID ASSIGN expresion .
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    ENDL            reduce using rule 31 (sentencia_asig -> ID ASSIGN expresion .)
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 47
+
+    (42) factor -> LBRA . expresion RBRA
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    expresion                      shift and go to state 72
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 48
+
+    (14) sentencia_cond -> IF lista_condiciones fin_cond . OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> IF lista_condiciones fin_cond . OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+
+    OP_BRA          shift and go to state 73
+
+
+state 49
+
+    (19) lista_condiciones -> lista_condiciones OR . condicion
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 75
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    condicion                      shift and go to state 74
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    expresion                      shift and go to state 25
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 50
+
+    (18) lista_condiciones -> LBRA lista_condiciones . AND condicion RBRA
+    (19) lista_condiciones -> lista_condiciones . OR condicion
+
+    AND             shift and go to state 76
+    OR              shift and go to state 49
+
+
+state 51
+
+    (21) condicion -> LBRA condicion . RBRA
+    (20) lista_condiciones -> condicion .
+
+    RBRA            shift and go to state 77
+    AND             reduce using rule 20 (lista_condiciones -> condicion .)
+    OR              reduce using rule 20 (lista_condiciones -> condicion .)
+
+
+state 52
+
+    (42) factor -> LBRA expresion . RBRA
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+    (23) arg_condicional_izq -> expresion .
+
+    RBRA            shift and go to state 78
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+    NE              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    LT              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    LTE             reduce using rule 23 (arg_condicional_izq -> expresion .)
+    GT              reduce using rule 23 (arg_condicional_izq -> expresion .)
+    GTE             reduce using rule 23 (arg_condicional_izq -> expresion .)
+    EQUAL           reduce using rule 23 (arg_condicional_izq -> expresion .)
+
+
+state 53
+
+    (22) condicion -> arg_condicional_izq op_logico . arg_condicional_der
+    (24) arg_condicional_der -> . expresion
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    arg_condicional_der            shift and go to state 79
+    expresion                      shift and go to state 80
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 54
+
+    (25) op_logico -> NE .
+
+    TAKE            reduce using rule 25 (op_logico -> NE .)
+    INTEGER         reduce using rule 25 (op_logico -> NE .)
+    ID              reduce using rule 25 (op_logico -> NE .)
+    FLOATD          reduce using rule 25 (op_logico -> NE .)
+    LBRA            reduce using rule 25 (op_logico -> NE .)
+
+
+state 55
+
+    (26) op_logico -> LT .
+
+    TAKE            reduce using rule 26 (op_logico -> LT .)
+    INTEGER         reduce using rule 26 (op_logico -> LT .)
+    ID              reduce using rule 26 (op_logico -> LT .)
+    FLOATD          reduce using rule 26 (op_logico -> LT .)
+    LBRA            reduce using rule 26 (op_logico -> LT .)
+
+
+state 56
+
+    (27) op_logico -> LTE .
+
+    TAKE            reduce using rule 27 (op_logico -> LTE .)
+    INTEGER         reduce using rule 27 (op_logico -> LTE .)
+    ID              reduce using rule 27 (op_logico -> LTE .)
+    FLOATD          reduce using rule 27 (op_logico -> LTE .)
+    LBRA            reduce using rule 27 (op_logico -> LTE .)
+
+
+state 57
+
+    (28) op_logico -> GT .
+
+    TAKE            reduce using rule 28 (op_logico -> GT .)
+    INTEGER         reduce using rule 28 (op_logico -> GT .)
+    ID              reduce using rule 28 (op_logico -> GT .)
+    FLOATD          reduce using rule 28 (op_logico -> GT .)
+    LBRA            reduce using rule 28 (op_logico -> GT .)
+
+
+state 58
+
+    (29) op_logico -> GTE .
+
+    TAKE            reduce using rule 29 (op_logico -> GTE .)
+    INTEGER         reduce using rule 29 (op_logico -> GTE .)
+    ID              reduce using rule 29 (op_logico -> GTE .)
+    FLOATD          reduce using rule 29 (op_logico -> GTE .)
+    LBRA            reduce using rule 29 (op_logico -> GTE .)
+
+
+state 59
+
+    (30) op_logico -> EQUAL .
+
+    TAKE            reduce using rule 30 (op_logico -> EQUAL .)
+    INTEGER         reduce using rule 30 (op_logico -> EQUAL .)
+    ID              reduce using rule 30 (op_logico -> EQUAL .)
+    FLOATD          reduce using rule 30 (op_logico -> EQUAL .)
+    LBRA            reduce using rule 30 (op_logico -> EQUAL .)
+
+
+state 60
+
+    (32) expresion -> expresion PLUS . termino
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    termino                        shift and go to state 81
+    factor                         shift and go to state 30
+
+state 61
+
+    (33) expresion -> expresion MINUS . termino
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    termino                        shift and go to state 82
+    factor                         shift and go to state 30
+
+state 62
+
+    (58) condicion_between -> BETWEEN LBRA . ID COMMA tupla RBRA
+
+    ID              shift and go to state 83
+
+
+state 63
+
+    (35) termino -> termino MULT . factor
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    factor                         shift and go to state 84
+
+state 64
+
+    (36) termino -> termino DIVIDE . factor
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    factor                         shift and go to state 85
+
+state 65
+
+    (37) termino -> termino REST . factor
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    factor                         shift and go to state 86
+
+state 66
+
+    (64) expresion_take -> TAKE LBRA . op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (65) op_arit -> . PLUS
+    (66) op_arit -> . MINUS
+    (67) op_arit -> . DIVIDE
+    (68) op_arit -> . MULT
+    (69) op_arit -> . REST
+
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
+    DIVIDE          shift and go to state 90
+    MULT            shift and go to state 91
+    REST            shift and go to state 92
+
+    op_arit                        shift and go to state 87
+
+state 67
+
+    (11) sentencia_while -> WHILE pre_cond_wh lista_condiciones . fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (19) lista_condiciones -> lista_condiciones . OR condicion
+    (12) fin_cond_wh -> .
+
+    OR              shift and go to state 49
+    OP_BRA          reduce using rule 12 (fin_cond_wh -> .)
+
+    fin_cond_wh                    shift and go to state 93
+
+state 68
+
+    (49) sentencia_decl -> DECVAR lista_declaraciones ENDDEC .
+
+    ENDL            reduce using rule 49 (sentencia_decl -> DECVAR lista_declaraciones ENDDEC .)
+
+
+state 69
+
+    (50) lista_declaraciones -> lista_declaraciones declaracion .
+
+    ENDDEC          reduce using rule 50 (lista_declaraciones -> lista_declaraciones declaracion .)
+    ID              reduce using rule 50 (lista_declaraciones -> lista_declaraciones declaracion .)
+
+
+state 70
+
+    (52) declaracion -> lista_id COLON . tipo_dato ENDL
+    (55) tipo_dato -> . FLOAT
+    (56) tipo_dato -> . STRING
+    (57) tipo_dato -> . INT
+
+    FLOAT           shift and go to state 95
+    STRING          shift and go to state 96
+    INT             shift and go to state 97
+
+    tipo_dato                      shift and go to state 94
+
+state 71
+
+    (53) lista_id -> lista_id COMMA . ID
+
+    ID              shift and go to state 98
+
+
+state 72
+
+    (42) factor -> LBRA expresion . RBRA
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    RBRA            shift and go to state 78
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 73
+
+    (14) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA . lista_sentencias CL_BRA
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA . lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (3) lista_sentencias -> . lista_sentencias sentencia ENDL
+    (4) lista_sentencias -> . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    lista_sentencias               shift and go to state 99
+    sentencia                      shift and go to state 4
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 74
+
+    (19) lista_condiciones -> lista_condiciones OR condicion .
+
+    OR              reduce using rule 19 (lista_condiciones -> lista_condiciones OR condicion .)
+    OP_BRA          reduce using rule 19 (lista_condiciones -> lista_condiciones OR condicion .)
+    AND             reduce using rule 19 (lista_condiciones -> lista_condiciones OR condicion .)
+
+
+state 75
+
+    (21) condicion -> LBRA . condicion RBRA
+    (42) factor -> LBRA . expresion RBRA
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 75
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    condicion                      shift and go to state 100
+    expresion                      shift and go to state 52
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 76
+
+    (18) lista_condiciones -> LBRA lista_condiciones AND . condicion RBRA
+    (21) condicion -> . LBRA condicion RBRA
+    (22) condicion -> . arg_condicional_izq op_logico arg_condicional_der
+    (62) condicion -> . condicion_between
+    (23) arg_condicional_izq -> . expresion
+    (58) condicion_between -> . BETWEEN LBRA ID COMMA tupla RBRA
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    LBRA            shift and go to state 75
+    BETWEEN         shift and go to state 26
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+
+    condicion                      shift and go to state 101
+    arg_condicional_izq            shift and go to state 23
+    condicion_between              shift and go to state 24
+    expresion                      shift and go to state 25
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 77
+
+    (21) condicion -> LBRA condicion RBRA .
+
+    OR              reduce using rule 21 (condicion -> LBRA condicion RBRA .)
+    OP_BRA          reduce using rule 21 (condicion -> LBRA condicion RBRA .)
+    RBRA            reduce using rule 21 (condicion -> LBRA condicion RBRA .)
+    AND             reduce using rule 21 (condicion -> LBRA condicion RBRA .)
+
+
+state 78
+
+    (42) factor -> LBRA expresion RBRA .
+
+    MULT            reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    DIVIDE          reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    REST            reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    PLUS            reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    MINUS           reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    NE              reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    LT              reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    LTE             reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    GT              reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    GTE             reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    EQUAL           reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    ENDL            reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    RBRA            reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    OR              reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    OP_BRA          reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    AND             reduce using rule 42 (factor -> LBRA expresion RBRA .)
+    CL_BRC          reduce using rule 42 (factor -> LBRA expresion RBRA .)
+
+
+state 79
+
+    (22) condicion -> arg_condicional_izq op_logico arg_condicional_der .
+
+    OR              reduce using rule 22 (condicion -> arg_condicional_izq op_logico arg_condicional_der .)
+    OP_BRA          reduce using rule 22 (condicion -> arg_condicional_izq op_logico arg_condicional_der .)
+    RBRA            reduce using rule 22 (condicion -> arg_condicional_izq op_logico arg_condicional_der .)
+    AND             reduce using rule 22 (condicion -> arg_condicional_izq op_logico arg_condicional_der .)
+
+
+state 80
+
+    (24) arg_condicional_der -> expresion .
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    OR              reduce using rule 24 (arg_condicional_der -> expresion .)
+    OP_BRA          reduce using rule 24 (arg_condicional_der -> expresion .)
+    RBRA            reduce using rule 24 (arg_condicional_der -> expresion .)
+    AND             reduce using rule 24 (arg_condicional_der -> expresion .)
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 81
+
+    (32) expresion -> expresion PLUS termino .
+    (35) termino -> termino . MULT factor
+    (36) termino -> termino . DIVIDE factor
+    (37) termino -> termino . REST factor
+
+    PLUS            reduce using rule 32 (expresion -> expresion PLUS termino .)
+    MINUS           reduce using rule 32 (expresion -> expresion PLUS termino .)
+    NE              reduce using rule 32 (expresion -> expresion PLUS termino .)
+    LT              reduce using rule 32 (expresion -> expresion PLUS termino .)
+    LTE             reduce using rule 32 (expresion -> expresion PLUS termino .)
+    GT              reduce using rule 32 (expresion -> expresion PLUS termino .)
+    GTE             reduce using rule 32 (expresion -> expresion PLUS termino .)
+    EQUAL           reduce using rule 32 (expresion -> expresion PLUS termino .)
+    ENDL            reduce using rule 32 (expresion -> expresion PLUS termino .)
+    RBRA            reduce using rule 32 (expresion -> expresion PLUS termino .)
+    OR              reduce using rule 32 (expresion -> expresion PLUS termino .)
+    OP_BRA          reduce using rule 32 (expresion -> expresion PLUS termino .)
+    AND             reduce using rule 32 (expresion -> expresion PLUS termino .)
+    CL_BRC          reduce using rule 32 (expresion -> expresion PLUS termino .)
+    MULT            shift and go to state 63
+    DIVIDE          shift and go to state 64
+    REST            shift and go to state 65
+
+
+state 82
+
+    (33) expresion -> expresion MINUS termino .
+    (35) termino -> termino . MULT factor
+    (36) termino -> termino . DIVIDE factor
+    (37) termino -> termino . REST factor
+
+    PLUS            reduce using rule 33 (expresion -> expresion MINUS termino .)
+    MINUS           reduce using rule 33 (expresion -> expresion MINUS termino .)
+    NE              reduce using rule 33 (expresion -> expresion MINUS termino .)
+    LT              reduce using rule 33 (expresion -> expresion MINUS termino .)
+    LTE             reduce using rule 33 (expresion -> expresion MINUS termino .)
+    GT              reduce using rule 33 (expresion -> expresion MINUS termino .)
+    GTE             reduce using rule 33 (expresion -> expresion MINUS termino .)
+    EQUAL           reduce using rule 33 (expresion -> expresion MINUS termino .)
+    ENDL            reduce using rule 33 (expresion -> expresion MINUS termino .)
+    RBRA            reduce using rule 33 (expresion -> expresion MINUS termino .)
+    OR              reduce using rule 33 (expresion -> expresion MINUS termino .)
+    OP_BRA          reduce using rule 33 (expresion -> expresion MINUS termino .)
+    AND             reduce using rule 33 (expresion -> expresion MINUS termino .)
+    CL_BRC          reduce using rule 33 (expresion -> expresion MINUS termino .)
+    MULT            shift and go to state 63
+    DIVIDE          shift and go to state 64
+    REST            shift and go to state 65
+
+
+state 83
+
+    (58) condicion_between -> BETWEEN LBRA ID . COMMA tupla RBRA
+
+    COMMA           shift and go to state 102
+
+
+state 84
+
+    (35) termino -> termino MULT factor .
+
+    MULT            reduce using rule 35 (termino -> termino MULT factor .)
+    DIVIDE          reduce using rule 35 (termino -> termino MULT factor .)
+    REST            reduce using rule 35 (termino -> termino MULT factor .)
+    PLUS            reduce using rule 35 (termino -> termino MULT factor .)
+    MINUS           reduce using rule 35 (termino -> termino MULT factor .)
+    NE              reduce using rule 35 (termino -> termino MULT factor .)
+    LT              reduce using rule 35 (termino -> termino MULT factor .)
+    LTE             reduce using rule 35 (termino -> termino MULT factor .)
+    GT              reduce using rule 35 (termino -> termino MULT factor .)
+    GTE             reduce using rule 35 (termino -> termino MULT factor .)
+    EQUAL           reduce using rule 35 (termino -> termino MULT factor .)
+    ENDL            reduce using rule 35 (termino -> termino MULT factor .)
+    RBRA            reduce using rule 35 (termino -> termino MULT factor .)
+    OR              reduce using rule 35 (termino -> termino MULT factor .)
+    OP_BRA          reduce using rule 35 (termino -> termino MULT factor .)
+    AND             reduce using rule 35 (termino -> termino MULT factor .)
+    CL_BRC          reduce using rule 35 (termino -> termino MULT factor .)
+
+
+state 85
+
+    (36) termino -> termino DIVIDE factor .
+
+    MULT            reduce using rule 36 (termino -> termino DIVIDE factor .)
+    DIVIDE          reduce using rule 36 (termino -> termino DIVIDE factor .)
+    REST            reduce using rule 36 (termino -> termino DIVIDE factor .)
+    PLUS            reduce using rule 36 (termino -> termino DIVIDE factor .)
+    MINUS           reduce using rule 36 (termino -> termino DIVIDE factor .)
+    NE              reduce using rule 36 (termino -> termino DIVIDE factor .)
+    LT              reduce using rule 36 (termino -> termino DIVIDE factor .)
+    LTE             reduce using rule 36 (termino -> termino DIVIDE factor .)
+    GT              reduce using rule 36 (termino -> termino DIVIDE factor .)
+    GTE             reduce using rule 36 (termino -> termino DIVIDE factor .)
+    EQUAL           reduce using rule 36 (termino -> termino DIVIDE factor .)
+    ENDL            reduce using rule 36 (termino -> termino DIVIDE factor .)
+    RBRA            reduce using rule 36 (termino -> termino DIVIDE factor .)
+    OR              reduce using rule 36 (termino -> termino DIVIDE factor .)
+    OP_BRA          reduce using rule 36 (termino -> termino DIVIDE factor .)
+    AND             reduce using rule 36 (termino -> termino DIVIDE factor .)
+    CL_BRC          reduce using rule 36 (termino -> termino DIVIDE factor .)
+
+
+state 86
+
+    (37) termino -> termino REST factor .
+
+    MULT            reduce using rule 37 (termino -> termino REST factor .)
+    DIVIDE          reduce using rule 37 (termino -> termino REST factor .)
+    REST            reduce using rule 37 (termino -> termino REST factor .)
+    PLUS            reduce using rule 37 (termino -> termino REST factor .)
+    MINUS           reduce using rule 37 (termino -> termino REST factor .)
+    NE              reduce using rule 37 (termino -> termino REST factor .)
+    LT              reduce using rule 37 (termino -> termino REST factor .)
+    LTE             reduce using rule 37 (termino -> termino REST factor .)
+    GT              reduce using rule 37 (termino -> termino REST factor .)
+    GTE             reduce using rule 37 (termino -> termino REST factor .)
+    EQUAL           reduce using rule 37 (termino -> termino REST factor .)
+    ENDL            reduce using rule 37 (termino -> termino REST factor .)
+    RBRA            reduce using rule 37 (termino -> termino REST factor .)
+    OR              reduce using rule 37 (termino -> termino REST factor .)
+    OP_BRA          reduce using rule 37 (termino -> termino REST factor .)
+    AND             reduce using rule 37 (termino -> termino REST factor .)
+    CL_BRC          reduce using rule 37 (termino -> termino REST factor .)
+
+
+state 87
+
+    (64) expresion_take -> TAKE LBRA op_arit . ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+
+    ENDL            shift and go to state 103
+
+
+state 88
+
+    (65) op_arit -> PLUS .
+
+    ENDL            reduce using rule 65 (op_arit -> PLUS .)
+
+
+state 89
+
+    (66) op_arit -> MINUS .
+
+    ENDL            reduce using rule 66 (op_arit -> MINUS .)
+
+
+state 90
+
+    (67) op_arit -> DIVIDE .
+
+    ENDL            reduce using rule 67 (op_arit -> DIVIDE .)
+
+
+state 91
+
+    (68) op_arit -> MULT .
+
+    ENDL            reduce using rule 68 (op_arit -> MULT .)
+
+
+state 92
+
+    (69) op_arit -> REST .
+
+    ENDL            reduce using rule 69 (op_arit -> REST .)
+
+
+state 93
+
+    (11) sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh . OP_BRA lista_sentencias CL_BRA
+
+    OP_BRA          shift and go to state 104
+
+
+state 94
+
+    (52) declaracion -> lista_id COLON tipo_dato . ENDL
+
+    ENDL            shift and go to state 105
+
+
+state 95
+
+    (55) tipo_dato -> FLOAT .
+
+    ENDL            reduce using rule 55 (tipo_dato -> FLOAT .)
+
+
+state 96
+
+    (56) tipo_dato -> STRING .
+
+    ENDL            reduce using rule 56 (tipo_dato -> STRING .)
+
+
+state 97
+
+    (57) tipo_dato -> INT .
+
+    ENDL            reduce using rule 57 (tipo_dato -> INT .)
+
+
+state 98
+
+    (53) lista_id -> lista_id COMMA ID .
+
+    COLON           reduce using rule 53 (lista_id -> lista_id COMMA ID .)
+    COMMA           reduce using rule 53 (lista_id -> lista_id COMMA ID .)
+
+
+state 99
+
+    (14) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias . CL_BRA
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias . CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (3) lista_sentencias -> lista_sentencias . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    CL_BRA          shift and go to state 106
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    sentencia                      shift and go to state 17
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 100
+
+    (21) condicion -> LBRA condicion . RBRA
+
+    RBRA            shift and go to state 77
+
+
+state 101
+
+    (18) lista_condiciones -> LBRA lista_condiciones AND condicion . RBRA
+
+    RBRA            shift and go to state 107
+
+
+state 102
+
+    (58) condicion_between -> BETWEEN LBRA ID COMMA . tupla RBRA
+    (59) tupla -> . OP_BRC tupla_izq ENDL tupla_der CL_BRC
+
+    OP_BRC          shift and go to state 109
+
+    tupla                          shift and go to state 108
+
+state 103
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL . INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+
+    INTEGER         shift and go to state 110
+
+
+state 104
+
+    (11) sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA . lista_sentencias CL_BRA
+    (3) lista_sentencias -> . lista_sentencias sentencia ENDL
+    (4) lista_sentencias -> . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    lista_sentencias               shift and go to state 111
+    sentencia                      shift and go to state 4
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 105
+
+    (52) declaracion -> lista_id COLON tipo_dato ENDL .
+
+    ENDDEC          reduce using rule 52 (declaracion -> lista_id COLON tipo_dato ENDL .)
+    ID              reduce using rule 52 (declaracion -> lista_id COLON tipo_dato ENDL .)
+
+
+state 106
+
+    (14) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA .
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA . fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (16) fin_bloque_verd -> .
+
+    ENDL            reduce using rule 14 (sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA .)
+    ELSE            reduce using rule 16 (fin_bloque_verd -> .)
+
+    fin_bloque_verd                shift and go to state 112
+
+state 107
+
+    (18) lista_condiciones -> LBRA lista_condiciones AND condicion RBRA .
+
+    OR              reduce using rule 18 (lista_condiciones -> LBRA lista_condiciones AND condicion RBRA .)
+    OP_BRA          reduce using rule 18 (lista_condiciones -> LBRA lista_condiciones AND condicion RBRA .)
+    AND             reduce using rule 18 (lista_condiciones -> LBRA lista_condiciones AND condicion RBRA .)
+
+
+state 108
+
+    (58) condicion_between -> BETWEEN LBRA ID COMMA tupla . RBRA
+
+    RBRA            shift and go to state 113
+
+
+state 109
+
+    (59) tupla -> OP_BRC . tupla_izq ENDL tupla_der CL_BRC
+    (60) tupla_izq -> . expresion
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    tupla_izq                      shift and go to state 114
+    expresion                      shift and go to state 115
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 110
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER . ENDL OP_BRC lista_take CL_BRC RBRA
+
+    ENDL            shift and go to state 116
+
+
+state 111
+
+    (11) sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias . CL_BRA
+    (3) lista_sentencias -> lista_sentencias . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    CL_BRA          shift and go to state 117
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    sentencia                      shift and go to state 17
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 112
+
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd . ELSE OP_BRA lista_sentencias CL_BRA
+
+    ELSE            shift and go to state 118
+
+
+state 113
+
+    (58) condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA .
+
+    OR              reduce using rule 58 (condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA .)
+    OP_BRA          reduce using rule 58 (condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA .)
+    RBRA            reduce using rule 58 (condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA .)
+    AND             reduce using rule 58 (condicion_between -> BETWEEN LBRA ID COMMA tupla RBRA .)
+
+
+state 114
+
+    (59) tupla -> OP_BRC tupla_izq . ENDL tupla_der CL_BRC
+
+    ENDL            shift and go to state 119
+
+
+state 115
+
+    (60) tupla_izq -> expresion .
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    ENDL            reduce using rule 60 (tupla_izq -> expresion .)
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 116
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL . OP_BRC lista_take CL_BRC RBRA
+
+    OP_BRC          shift and go to state 120
+
+
+state 117
+
+    (11) sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA .
+
+    ENDL            reduce using rule 11 (sentencia_while -> WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA .)
+
+
+state 118
+
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE . OP_BRA lista_sentencias CL_BRA
+
+    OP_BRA          shift and go to state 121
+
+
+state 119
+
+    (59) tupla -> OP_BRC tupla_izq ENDL . tupla_der CL_BRC
+    (61) tupla_der -> . expresion
+    (32) expresion -> . expresion PLUS termino
+    (33) expresion -> . expresion MINUS termino
+    (34) expresion -> . termino
+    (63) expresion -> . expresion_take
+    (35) termino -> . termino MULT factor
+    (36) termino -> . termino DIVIDE factor
+    (37) termino -> . termino REST factor
+    (38) termino -> . factor
+    (64) expresion_take -> . TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA
+    (39) factor -> . INTEGER
+    (40) factor -> . ID
+    (41) factor -> . FLOATD
+    (42) factor -> . LBRA expresion RBRA
+
+    TAKE            shift and go to state 31
+    INTEGER         shift and go to state 32
+    ID              shift and go to state 27
+    FLOATD          shift and go to state 33
+    LBRA            shift and go to state 47
+
+    tupla_der                      shift and go to state 122
+    expresion                      shift and go to state 123
+    termino                        shift and go to state 28
+    expresion_take                 shift and go to state 29
+    factor                         shift and go to state 30
+
+state 120
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC . lista_take CL_BRC RBRA
+    (70) lista_take -> . lista_take ENDL cte_take
+    (71) lista_take -> . cte_take
+    (72) cte_take -> . INTEGER
+    (73) cte_take -> . FLOATD
+
+    INTEGER         shift and go to state 124
+    FLOATD          shift and go to state 127
+
+    lista_take                     shift and go to state 125
+    cte_take                       shift and go to state 126
+
+state 121
+
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA . lista_sentencias CL_BRA
+    (3) lista_sentencias -> . lista_sentencias sentencia ENDL
+    (4) lista_sentencias -> . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    lista_sentencias               shift and go to state 128
+    sentencia                      shift and go to state 4
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 122
+
+    (59) tupla -> OP_BRC tupla_izq ENDL tupla_der . CL_BRC
+
+    CL_BRC          shift and go to state 129
+
+
+state 123
+
+    (61) tupla_der -> expresion .
+    (32) expresion -> expresion . PLUS termino
+    (33) expresion -> expresion . MINUS termino
+
+    CL_BRC          reduce using rule 61 (tupla_der -> expresion .)
+    PLUS            shift and go to state 60
+    MINUS           shift and go to state 61
+
+
+state 124
+
+    (72) cte_take -> INTEGER .
+
+    CL_BRC          reduce using rule 72 (cte_take -> INTEGER .)
+    ENDL            reduce using rule 72 (cte_take -> INTEGER .)
+
+
+state 125
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take . CL_BRC RBRA
+    (70) lista_take -> lista_take . ENDL cte_take
+
+    CL_BRC          shift and go to state 131
+    ENDL            shift and go to state 130
+
+
+state 126
+
+    (71) lista_take -> cte_take .
+
+    CL_BRC          reduce using rule 71 (lista_take -> cte_take .)
+    ENDL            reduce using rule 71 (lista_take -> cte_take .)
+
+
+state 127
+
+    (73) cte_take -> FLOATD .
+
+    CL_BRC          reduce using rule 73 (cte_take -> FLOATD .)
+    ENDL            reduce using rule 73 (cte_take -> FLOATD .)
+
+
+state 128
+
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias . CL_BRA
+    (3) lista_sentencias -> lista_sentencias . sentencia ENDL
+    (5) sentencia -> . sentencia_asig
+    (6) sentencia -> . sentencia_cond
+    (7) sentencia -> . sentencia_while
+    (8) sentencia -> . sentencia_decl
+    (9) sentencia -> . sentencia_write
+    (10) sentencia -> . sentencia_read
+    (31) sentencia_asig -> . ID ASSIGN expresion
+    (14) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA
+    (17) sentencia_cond -> . IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA
+    (11) sentencia_while -> . WHILE pre_cond_wh lista_condiciones fin_cond_wh OP_BRA lista_sentencias CL_BRA
+    (49) sentencia_decl -> . DECVAR lista_declaraciones ENDDEC
+    (43) sentencia_write -> . WRITE cte
+    (44) sentencia_write -> . WRITE ID
+    (45) sentencia_read -> . READ ID
+
+    CL_BRA          shift and go to state 132
+    ID              shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    DECVAR          shift and go to state 14
+    WRITE           shift and go to state 15
+    READ            shift and go to state 16
+
+    sentencia                      shift and go to state 17
+    sentencia_asig                 shift and go to state 5
+    sentencia_cond                 shift and go to state 6
+    sentencia_while                shift and go to state 7
+    sentencia_decl                 shift and go to state 8
+    sentencia_write                shift and go to state 9
+    sentencia_read                 shift and go to state 10
+
+state 129
+
+    (59) tupla -> OP_BRC tupla_izq ENDL tupla_der CL_BRC .
+
+    RBRA            reduce using rule 59 (tupla -> OP_BRC tupla_izq ENDL tupla_der CL_BRC .)
+
+
+state 130
+
+    (70) lista_take -> lista_take ENDL . cte_take
+    (72) cte_take -> . INTEGER
+    (73) cte_take -> . FLOATD
+
+    INTEGER         shift and go to state 124
+    FLOATD          shift and go to state 127
+
+    cte_take                       shift and go to state 133
+
+state 131
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC . RBRA
+
+    RBRA            shift and go to state 134
+
+
+state 132
+
+    (17) sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA .
+
+    ENDL            reduce using rule 17 (sentencia_cond -> IF lista_condiciones fin_cond OP_BRA lista_sentencias CL_BRA fin_bloque_verd ELSE OP_BRA lista_sentencias CL_BRA .)
+
+
+state 133
+
+    (70) lista_take -> lista_take ENDL cte_take .
+
+    CL_BRC          reduce using rule 70 (lista_take -> lista_take ENDL cte_take .)
+    ENDL            reduce using rule 70 (lista_take -> lista_take ENDL cte_take .)
+
+
+state 134
+
+    (64) expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .
+
+    PLUS            reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    MINUS           reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    NE              reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    LT              reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    LTE             reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    GT              reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    GTE             reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    EQUAL           reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    ENDL            reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    RBRA            reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    OR              reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    OP_BRA          reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    AND             reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+    CL_BRC          reduce using rule 64 (expresion_take -> TAKE LBRA op_arit ENDL INTEGER ENDL OP_BRC lista_take CL_BRC RBRA .)
+

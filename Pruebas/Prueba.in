@@ -1,0 +1,38 @@
+-/Prueba de Sentencia de Declaración /-
+DECVAR
+    varFloat1,varFloat2  : FLOAT; 
+    varString            : STRING;
+    varInteger1,varInteger2           : INT;
+ENDDEC;
+
+-/Prueba de Sentencia de Asignación /-
+varInteger1 := 0;
+varInteger2 := 0;
+varFloat1 := .95;
+
+-/ Prueba de Sentencia de Condicional con Between /-
+if(between(varInteger1,[0;(1+3*2)])){
+    read varString;   
+};
+
+-/Prueba de While/-
+while( varInteger1 < 10) {
+
+    -/Prueba de Ciclos Anidados/-
+    while (varInteger2 < 10){
+        varInteger2 := varInteger2 +1;
+    };
+    -/Prueba de IF ELSE/-
+    if(varInteger2+3 < 15){
+        write "Paso por el IF";
+    }
+    else{
+        write "Paso por el ELSE";
+    };
+     -/Prueba de TAKE/-
+    varInteger1 := varInteger1 + 1;
+    varFloat1 := take(+;3;[2;13;15]);
+
+};
+
+
